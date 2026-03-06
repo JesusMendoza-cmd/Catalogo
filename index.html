@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Mi Catálogo</title>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+<style>
+
+body{
+font-family: Arial;
+margin:0;
+background:linear-gradient(135deg,#3a0ca3,#4361ee,#f72585);
+min-height:100vh;
+color:white;
+}
+
+header{
+background:rgba(0,0,0,0.4);
+backdrop-filter:blur(10px);
+padding:25px;
+text-align:center;
+}
+
+.logo{
+font-size:32px;
+font-weight:bold;
+letter-spacing:2px;
+}
+
+.catalogo{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:30px;
+padding:40px;
+}
+
+.producto{
+background:white;
+border-radius:15px;
+box-shadow:0 10px 25px rgba(0,0,0,0.3);
+padding:20px;
+text-align:center;
+color:#333;
+transition:0.3s;
+}
+
+.producto:hover{
+transform:translateY(-8px);
+}
+
+.producto img{
+width:100%;
+border-radius:10px;
+cursor:pointer;
+}
+
+.producto h2{
+color:#3a0ca3;
+}
+
+.precio{
+font-size:36px;
+color:#f72585;
+font-weight:bold;
+margin:10px 0;
+}
+
+.boton{
+display:inline-block;
+background:linear-gradient(45deg,#4361ee,#f72585);
+color:white;
+padding:12px 22px;
+border-radius:8px;
+text-decoration:none;
+margin-top:10px;
+font-weight:bold;
+transition:0.3s;
+}
+
+.boton:hover{
+transform:scale(1.05);
+}
+
+.qr{
+text-align:center;
+padding:30px;
+}
+
+footer{
+text-align:center;
+padding:20px;
+background:rgba(0,0,0,0.4);
+margin-top:40px;
+}
+
+.modal{
+display:none;
+position:fixed;
+z-index:10;
+padding-top:100px;
+left:0;
+top:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.85);
+}
+
+.modal img{
+display:block;
+margin:auto;
+width:60%;
+border-radius:10px;
+}
+
+.cerrar{
+position:absolute;
+top:30px;
+right:40px;
+color:white;
+font-size:40px;
+cursor:pointer;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">
+MI TIENDA
+</div>
+
+<p>Catálogo de productos</p>
+
+</header>
+
+
+<section class="catalogo">
+
+<div class="producto">
+
+<img src="producto1.jpeg" onclick="verImagen(this.src)">
+
+<h2>Producto 1</h2>
+
+<div class="precio">$3000</div>
+
+<a class="boton" href="https://wa.me/7292324522">
+Comprar
+</a>
+
+</div>
+
+
+<div class="producto">
+
+<img src="producto 2.jpeg" onclick="verImagen(this.src)">
+
+<h2>Producto 2</h2>
+
+<div class="precio">$1500</div>
+
+<a class="boton" href="https://wa.me/7292324522">
+Comprar
+</a>
+
+</div>
+
+</section>
+
+
+
+<div class="qr">
+
+<h2>Escanea el QR para ver el catálogo</h2>
+
+<div id="qrcode"></div>
+
+</div>
+
+
+<footer>
+
+Mi catálogo online
+
+</footer>
+
+
+
+<div id="modal" class="modal">
+
+<span class="cerrar" onclick="cerrar()">×</span>
+
+<img id="imagenGrande">
+
+</div>
+
+
+<script>
+
+function verImagen(src){
+
+document.getElementById("modal").style.display="block";
+document.getElementById("imagenGrande").src=src;
+
+}
+
+function cerrar(){
+
+document.getElementById("modal").style.display="none";
+
+}
+
+
+new QRCode(document.getElementById("qrcode"), {
+text: window.location.href,
+width:150,
+height:150
+});
+
+</script>
+
+</body>
+</html>
