@@ -1,55 +1,61 @@
+```html
 <!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Mi Catálogo</title>
+<title>Catálogo</title>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 
 <style>
 
 body{
-font-family: Arial;
+font-family:Arial;
 margin:0;
 background:linear-gradient(135deg,#3a0ca3,#4361ee,#f72585);
-min-height:100vh;
 color:white;
 }
 
 header{
-background:rgba(0,0,0,0.4);
-backdrop-filter:blur(10px);
-padding:25px;
 text-align:center;
+padding:30px;
+background:rgba(0,0,0,0.4);
 }
 
 .logo{
 font-size:32px;
 font-weight:bold;
-letter-spacing:2px;
+}
+
+.descripcion{
+max-width:900px;
+margin:auto;
+padding:20px;
+text-align:center;
+background:rgba(255,255,255,0.15);
+border-radius:10px;
 }
 
 .catalogo{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:30px;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:25px;
 padding:40px;
 }
 
 .producto{
 background:white;
-border-radius:15px;
-box-shadow:0 10px 25px rgba(0,0,0,0.3);
-padding:20px;
-text-align:center;
 color:#333;
+border-radius:15px;
+padding:15px;
+text-align:center;
+box-shadow:0 10px 25px rgba(0,0,0,0.3);
 transition:0.3s;
 }
 
 .producto:hover{
-transform:translateY(-8px);
+transform:translateY(-6px);
 }
 
 .producto img{
@@ -58,43 +64,26 @@ border-radius:10px;
 cursor:pointer;
 }
 
-.producto h2{
-color:#3a0ca3;
-}
-
 .precio{
-font-size:36px;
-color:#f72585;
+font-size:30px;
 font-weight:bold;
-margin:10px 0;
+color:#f72585;
+margin:10px;
 }
 
 .boton{
-display:inline-block;
 background:linear-gradient(45deg,#4361ee,#f72585);
 color:white;
-padding:12px 22px;
+padding:10px 18px;
 border-radius:8px;
 text-decoration:none;
+display:inline-block;
 margin-top:10px;
-font-weight:bold;
-transition:0.3s;
-}
-
-.boton:hover{
-transform:scale(1.05);
 }
 
 .qr{
 text-align:center;
 padding:30px;
-}
-
-footer{
-text-align:center;
-padding:20px;
-background:rgba(0,0,0,0.4);
-margin-top:40px;
 }
 
 .modal{
@@ -106,21 +95,19 @@ left:0;
 top:0;
 width:100%;
 height:100%;
-background:rgba(0,0,0,0.85);
+background:rgba(0,0,0,0.9);
 }
 
 .modal img{
 display:block;
 margin:auto;
 width:60%;
-border-radius:10px;
 }
 
 .cerrar{
 position:absolute;
 top:30px;
 right:40px;
-color:white;
 font-size:40px;
 cursor:pointer;
 }
@@ -131,50 +118,53 @@ cursor:pointer;
 <body>
 
 <header>
-
-<div class="logo">
-MI TIENDA
-</div>
-
-<p>Catálogo de productos</p>
-
+<div class="logo">MI CATÁLOGO</div>
 </header>
 
+<div class="descripcion">
+<p>
+Las fundas se quitan para cambiar de diseño y tener una mejor higiene ya que se pueden lavar.
+<br><br>
+En caso de ser usadas para cama de mascotas es recomendable usar una cobijita del animalito para evitar que se orine dentro.
+<br><br>
+También se pueden utilizar como baúl para poder guardar cosas.
+</p>
+</div>
 
 <section class="catalogo">
 
+<script>
+
+for(let i=1;i<=16;i++){
+
+let precio=i<=10?"$1000":"$1300";
+let tipo=i<=10?"Chico":"Grande";
+
+document.write(`
+
 <div class="producto">
 
-<img src="Producto1.jpeg" onclick="verImagen(this.src)">
+<img src="producto${i}.jpeg" onclick="verImagen(this.src)">
 
-<h2>Producto 1</h2>
+<h3>Producto ${i}</h3>
 
-<div class="precio">$3000</div>
+<p>${tipo}</p>
 
-<a class="boton" href="https://wa.me/7292324522">
-Comprar
+<div class="precio">${precio}</div>
+
+<a class="boton" href="https://wa.me/527292324522?text=Hola%20quiero%20información%20del%20producto%20${i}">
+Preguntar
 </a>
 
 </div>
 
+`);
 
-<div class="producto">
+}
 
-<img src="Producto 2.jpeg" onclick="verImagen(this.src)">
-
-<h2>Producto 2</h2>
-
-<div class="precio">$1500</div>
-
-<a class="boton" href="https://wa.me/7292324522">
-Comprar
-</a>
-
-</div>
+</script>
 
 </section>
-
-
 
 <div class="qr">
 
@@ -184,15 +174,6 @@ Comprar
 
 </div>
 
-
-<footer>
-
-Mi catálogo online
-
-</footer>
-
-
-
 <div id="modal" class="modal">
 
 <span class="cerrar" onclick="cerrar()">×</span>
@@ -200,7 +181,6 @@ Mi catálogo online
 <img id="imagenGrande">
 
 </div>
-
 
 <script>
 
@@ -217,9 +197,8 @@ document.getElementById("modal").style.display="none";
 
 }
 
-
-new QRCode(document.getElementById("qrcode"), {
-text: window.location.href,
+new QRCode(document.getElementById("qrcode"),{
+text:window.location.href,
 width:150,
 height:150
 });
@@ -227,5 +206,6 @@ height:150
 </script>
 
 </body>
-
 </html>
+```
+
