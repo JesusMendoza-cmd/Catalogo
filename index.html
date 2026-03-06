@@ -4,7 +4,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Catálogo</title>
+
+<title>FYWAN</title>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 
@@ -24,7 +25,7 @@ background:rgba(0,0,0,0.4);
 }
 
 .logo{
-font-size:32px;
+font-size:36px;
 font-weight:bold;
 }
 
@@ -118,7 +119,7 @@ cursor:pointer;
 <body>
 
 <header>
-<div class="logo">MI CATÁLOGO</div>
+<div class="logo">FYWAN</div>
 </header>
 
 <div class="descripcion">
@@ -146,13 +147,11 @@ document.write(`
 
 <img src="./Producto${i}.jpeg" onclick="verImagen(this.src)">
 
-<h3>Producto ${i}</h3>
-
-<p>${tipo}</p>
+<h3>Ecollant - ${tipo}</h3>
 
 <div class="precio">${precio}</div>
 
-<a class="boton" href="https://wa.me/527292324522?text=Hola%20quiero%20información%20del%20producto%20${i}">
+<a class="boton" href="https://wa.me/527292324522?text=Hola%20quiero%20información%20del%20Ecollant%20${tipo}">
 Preguntar
 </a>
 
